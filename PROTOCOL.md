@@ -9,4 +9,7 @@
 - Verified the local workstream branches and branch notes.
 - Queued separate Codex workstream thread setups from the eight local workstream branches.
 - Inspected the visible GitHub repository and OpenAI Codex for Open Source form fields in Safari.
-- Public GitHub repository creation, remote publication, and form field entry remain pending explicit browser-action confirmation.
+- Created and published the public GitHub repository at `https://github.com/ronova27/open-practice-toolkit`.
+- Published `main` and the eight `workstream/*` branches to the public repository.
+- Filled the OpenAI Codex for Open Source form through the repository qualification field for human review.
+- The form was not submitted. Remaining live form edits are paused pending action-time confirmation before modifying additional third-party form fields.
