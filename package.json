@@ -1,0 +1,15 @@
+{
+  "name": "open-practice-toolkit",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A local-first music practice toolkit prototype.",
+  "type": "module",
+  "scripts": {
+    "check": "node --check app/app.js && node --check app/metronome/timing.js && node --check app/metronome/wav.js && node --check app/sw.js",
+    "test": "node --test test/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}

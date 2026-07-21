@@ -1,0 +1,10 @@
+{
+  "name": "OpenPractice Toolkit",
+  "short_name": "OpenPractice",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f3ead6",
+  "theme_color": "#f3ead6",
+  "description": "A local-first music practice toolkit prototype.",
+  "icons": []
+}

@@ -4,13 +4,32 @@ A free, open-source, local-first music practice toolkit for metronome work, nota
 
 ## Status
 
-OpenPractice Toolkit is an early placeholder repository in its founding phase. It is not a finished product yet, and the current repository exists to make the project scope, governance, and workstreams reviewable before heavier implementation begins.
+OpenPractice Toolkit is still in its founding phase, but the repository now includes a first usable browser vertical slice: a dependency-free advanced metronome prototype under [`app/`](app/). It is not a finished product yet; notation, recording feedback, transcription, and video research remain separate workstreams.
 
 ## What This Project Is
 
 OpenPractice Toolkit is intended to become a web-first practice companion for students, pianists, percussionists, teachers, and self-learners who need useful practice tools without subscription barriers.
 
 The project should be useful before it is fancy. Initial work will focus on clear timing tools, simple notation playback, practical feedback, open export formats, and privacy-respecting local processing where feasible.
+
+## Run The Prototype
+
+Serve the `app/` directory over HTTP so the Web Audio and service-worker boundaries behave like they will on a hosted static site:
+
+```bash
+python3 -m http.server 4173 --directory app
+```
+
+Then open <http://127.0.0.1:4173/>. The current metronome supports BPM, tap tempo, time signatures, subdivisions, downbeat accents, tempo ramps, a 3:2-style polyrhythm layer, visual pulse feedback, and local WAV click-track export.
+
+The dependency-free verification lane is:
+
+```bash
+npm run check
+npm test
+```
+
+See [docs/usage.md](docs/usage.md) for the interaction and privacy boundaries of this first slice.
 
 ## Why Open Source Matters
 

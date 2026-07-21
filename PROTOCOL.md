@@ -1,5 +1,14 @@
 # Protocol
 
+## 2026-07-21 First executable metronome slice
+
+- Restored the exact project identified from the Ronova source and public page: `https://github.com/ronova27/open-practice-toolkit`, then continued it on a dedicated local branch from `main`.
+- Added a dependency-free browser/PWA shell under `app/` with accessible tempo, meter, subdivision, accent, tempo-ramp, polyrhythm, tap-tempo, visual-pulse, and local WAV-export controls.
+- Added a pure deterministic timing compiler and PCM16 WAV renderer, plus six Node built-in tests covering normalization, grid timing, ramps, polyrhythm, tap tempo, and the RIFF contract.
+- Added usage and architecture notes, updated the roadmap to distinguish completed prototype behavior from the remaining long-running transport and future notation/feedback/transcription workstreams, and bumped the service-worker cache key to `openpractice-shell-v2` after browser QA caught stale asset risk.
+- Verification evidence: `npm run check`, `npm test` (6/6), a local Python HTTP server, WebKit browser interaction at desktop and mobile widths, no horizontal overflow at 1440px and 390px, no browser console errors, successful start/stop and tap-tempo behavior, and a downloaded `openpractice-96bpm-4x4.wav` artifact.
+- No backend, secret, paid service, analytics, account system, Ronova ID integration, deployment, or public submission was added.
+
 ## 2026-07-05 Bootstrap
 
 - Created the founding OpenPractice Toolkit repository structure.

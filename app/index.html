@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f3ead6" />
+    <meta name="description" content="A local-first advanced metronome prototype from OpenPractice Toolkit." />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>OpenPractice Toolkit · Advanced Metronome</title>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="masthead">
+        <a class="wordmark" href="./" aria-label="OpenPractice Toolkit home">OpenPractice <span>Toolkit</span></a>
+        <p class="status-chip">Local prototype · no account required</p>
+      </header>
+
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">Open-source music practice</p>
+        <h1 id="page-title">A metronome that can grow with the practice.</h1>
+        <p class="lede">
+          Shape time before adding spectacle: tap a tempo, layer subdivisions or a polyrhythm,
+          ramp the pace, and export a click track. Audio stays in this browser.
+        </p>
+      </section>
+
+      <form class="control-panel" id="metronome-form">
+        <div class="control-panel__heading">
+          <div>
+            <p class="eyebrow">Timing console</p>
+            <h2>Build a practice cycle</h2>
+          </div>
+          <p class="hint">Keyboard: <kbd>Space</kbd> taps tempo while focus is outside a text field.</p>
+        </div>
+
+        <div class="control-grid">
+          <fieldset>
+            <legend>Tempo</legend>
+            <label class="field field--wide" for="bpm">
+              <span>Starting BPM</span>
+              <span class="field__inline">
+                <input id="bpm" name="bpm" type="number" min="20" max="320" step="1" value="96" inputmode="numeric" />
+                <output id="bpm-output" for="bpm">96</output>
+              </span>
+            </label>
+            <input id="bpm-range" class="range" type="range" min="20" max="320" step="1" value="96" aria-label="Starting BPM slider" />
+
+            <button class="button button--secondary" id="tap-tempo" type="button">
+              Tap tempo <span class="button__key">Space</span>
+            </button>
+
+            <label class="field" for="end-bpm">
+              <span>Ending BPM</span>
+              <input id="end-bpm" name="endBpm" type="number" min="20" max="320" step="1" value="96" inputmode="numeric" />
+            </label>
+            <label class="check-row" for="tempo-ramp">
+              <input id="tempo-ramp" name="tempoRamp" type="checkbox" />
+              <span>Ramp gradually across the cycle</span>
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Meter and texture</legend>
+            <div class="field-pair">
+              <label class="field" for="beats-per-bar">
+                <span>Beats per bar</span>
+                <input id="beats-per-bar" name="beatsPerBar" type="number" min="1" max="16" step="1" value="4" inputmode="numeric" />
+              </label>
+              <label class="field" for="beat-unit">
+                <span>Beat unit</span>
+                <select id="beat-unit" name="beatUnit">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="4" selected>4</option>
+                  <option value="8">8</option>
+                  <option value="16">16</option>
+                </select>
+              </label>
+            </div>
+            <label class="field" for="subdivisions">
+              <span>Subdivisions per beat</span>
+              <select id="subdivisions" name="subdivisions">
+                <option value="1" selected>None</option>
+                <option value="2">2 · eighths</option>
+                <option value="3">3 · triplets</option>
+                <option value="4">4 · sixteenths</option>
+                <option value="6">6 · sextuplets</option>
+                <option value="8">8 · octuplets</option>
+              </select>
+            </label>
+            <label class="field" for="bars">
+              <span>Cycle length</span>
+              <span class="field__inline">
+                <input id="bars" name="bars" type="number" min="1" max="64" step="1" value="4" inputmode="numeric" />
+                <span class="unit">bars</span>
+              </span>
+            </label>
+            <label class="check-row" for="accent-downbeat">
+              <input id="accent-downbeat" name="accentDownbeat" type="checkbox" checked />
+              <span>Accentuate each downbeat</span>
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Polyrhythm layer</legend>
+            <label class="check-row" for="polyrhythm-enabled">
+              <input id="polyrhythm-enabled" name="polyrhythmEnabled" type="checkbox" />
+              <span>Add a second pulse</span>
+            </label>
+            <div class="field-pair">
+              <label class="field" for="poly-parts">
+                <span>Parts</span>
+                <input id="poly-parts" name="polyParts" type="number" min="2" max="9" step="1" value="3" inputmode="numeric" disabled />
+              </label>
+              <label class="field" for="poly-span">
+                <span>Across beats</span>
+                <input id="poly-span" name="polySpan" type="number" min="1" max="16" step="1" value="2" inputmode="numeric" disabled />
+              </label>
+            </div>
+            <p class="field-note">For example, 3 across 2 beats gives a quiet 3:2 practice layer.</p>
+          </fieldset>
+        </div>
+
+        <div class="control-panel__footer">
+          <p class="privacy-note"><span class="privacy-note__dot" aria-hidden="true"></span> No recording, login, analytics, or upload is used by this prototype.</p>
+          <div class="actions">
+            <button class="button button--primary" id="toggle-metronome" type="button">Start metronome</button>
+            <button class="button button--secondary" id="export-wav" type="button">Export WAV</button>
+          </div>
+        </div>
+      </form>
+
+      <section class="monitor" aria-labelledby="monitor-title">
+        <div class="monitor__readout">
+          <p class="eyebrow">Practice monitor</p>
+          <h2 id="monitor-title">Ready when you are.</h2>
+          <p id="status" class="monitor__status" role="status" aria-live="polite">Configure a cycle, then start the metronome.</p>
+          <dl class="metrics" aria-label="Current metronome summary">
+            <div><dt>Tempo</dt><dd id="metric-tempo">96 BPM</dd></div>
+            <div><dt>Meter</dt><dd id="metric-meter">4/4</dd></div>
+            <div><dt>Events</dt><dd id="metric-events">16</dd></div>
+            <div><dt>Cycle</dt><dd id="metric-duration">10.00 s</dd></div>
+          </dl>
+        </div>
+        <div class="pulse-stage" aria-hidden="true">
+          <div class="pulse-ring pulse-ring--outer"></div>
+          <div class="pulse-ring pulse-ring--inner" id="pulse-ring"></div>
+          <div class="pulse-core" id="pulse-core"><span id="pulse-label">READY</span></div>
+        </div>
+      </section>
+
+      <details class="notes">
+        <summary>What is deliberately not here yet?</summary>
+        <div class="notes__body">
+          <p>
+            This is the first vertical slice, not a finished music workstation. Notation input,
+            practice recording, transcription, and video-to-rhythm remain separate workstreams.
+          </p>
+          <p>
+            The timing model is deterministic and testable, but real device timing still depends on
+            the browser and audio hardware. Use it as a practice aid, not as a claim of laboratory precision.
+          </p>
+        </div>
+      </details>
+
+      <footer class="footer">
+        <a href="https://github.com/ronova27/open-practice-toolkit" target="_blank" rel="noreferrer">Open source on GitHub ↗</a>
+        <span>MIT · OpenPractice Toolkit</span>
+      </footer>
+    </main>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

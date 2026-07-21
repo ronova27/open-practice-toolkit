@@ -2,6 +2,8 @@
 
 OpenPractice Toolkit is starting with a documentation-first bootstrap so the project can grow in small, reviewable branches.
 
+The first executable slice now exists in `app/`: a local-first metronome shell with a deterministic timing model, browser playback, visual pulse, and WAV export. The remaining roadmap stays intentionally open rather than treating this prototype as a finished workstation.
+
 ## Phase 0: Foundation
 
 - Establish README, license, contribution guide, security policy, and issue templates.
@@ -11,17 +13,20 @@ OpenPractice Toolkit is starting with a documentation-first bootstrap so the pro
 
 ## Phase 1: Web/PWA Shell
 
-- Choose a minimal web stack.
-- Define offline-first storage and service worker expectations.
-- Add accessibility baseline for keyboard, screen reader, contrast, and reduced-motion behavior.
-- Create a placeholder app shell with no paid backends.
+- [x] Choose a dependency-free browser shell.
+- [x] Define a cache-first service worker boundary for the static prototype.
+- [x] Add an accessibility baseline for labels, keyboard tap tempo, contrast, and reduced motion.
+- [x] Create a useful first app surface with no paid backends.
+- [ ] Add local project/session storage after the data boundary is reviewed.
 
 ## Phase 2: Timing Core
 
-- Prototype the metronome timing model.
-- Compare scheduling approaches using Web Audio API.
-- Add BPM, tap tempo, subdivisions, accents, tempo ramps, and visual pulse.
-- Export WAV click tracks.
+- [x] Prototype a deterministic metronome timing model.
+- [x] Schedule one-shot click events with the Web Audio API.
+- [x] Add BPM, tap tempo, subdivisions, accents, tempo ramps, polyrhythms, and visual pulse.
+- [x] Export mono PCM WAV click tracks locally.
+- [ ] Compare long-running scheduler strategies on representative browsers and devices.
+- [ ] Add calibration and transport-loop behavior after the first shell is reviewed.
 
 ## Phase 3: Notation Prehearing
 
