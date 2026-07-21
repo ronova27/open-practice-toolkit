@@ -1,5 +1,11 @@
 # Protocol
 
+## 2026-07-21 Authorized publish attempt
+
+- Committed the reviewed executable slice as `a29eb1a` and pushed `codex/continue-openpractice` to the public OpenPractice repository; the branch now tracks `origin/codex/continue-openpractice`.
+- Prepared the corresponding Ronova source commit locally as `f873c2c`, but the existing `portfolio/v0.6.3` release train keeps all authoritative tags on the previous commit and its predeploy version contract rejected the follow-up commit.
+- Preserved the user-provided Ronova instruction/archive files and the metadata-only release registry; no tag rewrite, invented version, or Pages deployment was performed.
+
 ## 2026-07-21 First executable metronome slice
 
 - Restored the exact project identified from the Ronova source and public page: `https://github.com/ronova27/open-practice-toolkit`, then continued it on a dedicated local branch from `main`.
