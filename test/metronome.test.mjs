@@ -8,6 +8,8 @@ import {
   getBpmAtBeat,
   normalizeMetronomeConfig
 } from "../app/metronome/timing.js";
+import { buildCalibrationPlan, summarizeCalibration } from "../app/metronome/calibration.js";
+import { planTransportWindow } from "../app/metronome/transport.js";
 import { renderClickTrackWav } from "../app/metronome/wav.js";
 
 test("normalizes metronome values into safe limits", () => {
@@ -90,4 +92,47 @@ test("renders a mono PCM WAV with a valid RIFF header", () => {
   assert.equal(view.getUint16(34, true), 16);
   assert.equal(view.getUint32(40, true), wav.length - 44);
   assert.ok(wav.length > 44);
+});
+
+test("plans a rolling transport window without duplicating cycle events", () => {
+  const events = [{ time: 0, kind: "beat" }, { time: 0.5, kind: "beat" }];
+  const first = planTransportWindow({
+    events,
+    cycleDuration: 1,
+    startTime: 10,
+    horizonTime: 10.75,
+    minimumTime: 9.98
+  });
+
+  assert.deepEqual(first.scheduled.map(({ time }) => time), [10, 10.5]);
+  assert.equal(first.nextEventIndex, 0);
+  assert.equal(first.cycleIndex, 1);
+
+  const second = planTransportWindow({
+    events,
+    cycleDuration: 1,
+    startTime: 10,
+    horizonTime: 11.5,
+    minimumTime: 10.75,
+    nextEventIndex: first.nextEventIndex,
+    cycleIndex: first.cycleIndex
+  });
+
+  assert.deepEqual(second.scheduled.map(({ time }) => time), [11, 11.5]);
+  assert.equal(second.nextEventIndex, 0);
+  assert.equal(second.cycleIndex, 2);
+});
+
+test("builds a fixed-beat calibration plan and summarizes response offset", () => {
+  const plan = buildCalibrationPlan({ bpm: 120, beats: 8, leadInSeconds: 0.25 });
+  assert.equal(plan.length, 8);
+  assert.equal(plan[0].time, 0.25);
+  assert.equal(plan[1].time, 0.75);
+
+  const expected = plan.map(({ time }) => time * 1000);
+  const taps = expected.map((time) => time + 40);
+  const summary = summarizeCalibration(expected, taps);
+
+  assert.deepEqual(summary, { offsetMs: 40, jitterMs: 0, samples: 8 });
+  assert.equal(summarizeCalibration(expected, []), null);
 });

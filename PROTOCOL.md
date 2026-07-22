@@ -1,5 +1,11 @@
 # Protocol
 
+## 2026-07-22 OpenPractice rolling transport and calibration
+
+- Added a bounded Web Audio look-ahead scheduler that repeats the configured pattern without pre-scheduling an unbounded timeline; continuous transport is explicitly scoped to an active browser tab.
+- Added an eight-beat, browser-local response calibration flow with a median offset and jitter summary. It stores no recording, does not upload data, and does not claim to measure physical output latency independently from human response.
+- Added pure transport-window and calibration-summary tests, bumped the service-worker cache to `openpractice-shell-v3`, and verified the new controls in a named WebKit browser session after rejecting WebKit's uninitialized zero output timestamp.
+
 ## 2026-07-22 Ronova v0.6.4 beta publication
 
 - Continued the OpenPractice Toolkit into the approved Ronova `v0.6.4` beta release from isolated commit `fa3b392a8334`, preserving the dirty Ronova checkout and unchanged canonical product source snapshots.

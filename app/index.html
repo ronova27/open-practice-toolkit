@@ -58,6 +58,11 @@
               <input id="tempo-ramp" name="tempoRamp" type="checkbox" />
               <span>Ramp gradually across the cycle</span>
             </label>
+            <label class="check-row" for="continuous-transport">
+              <input id="continuous-transport" name="continuousTransport" type="checkbox" />
+              <span>Keep transport running</span>
+            </label>
+            <p class="field-note">Uses a rolling audio schedule while this browser tab stays active.</p>
           </fieldset>
 
           <fieldset>
@@ -131,6 +136,26 @@
         </div>
       </form>
 
+      <section class="calibration-panel" aria-labelledby="calibration-title">
+        <div>
+          <p class="eyebrow">Timing calibration</p>
+          <h2 id="calibration-title">Measure your response offset.</h2>
+          <p class="calibration-copy">
+            Hear eight clicks at the current tempo and tap each one as it arrives. The result is a
+            local response baseline for future timing feedback; it does not change the click schedule.
+          </p>
+        </div>
+        <div class="calibration-actions">
+          <button class="button button--primary" id="start-calibration" type="button">Start calibration</button>
+          <button class="button button--secondary" id="tap-calibration" type="button" disabled>
+            Tap heard beat <span class="button__key">Space</span>
+          </button>
+        </div>
+        <p id="calibration-result" class="calibration-result" role="status" aria-live="polite">
+          Not calibrated yet. Hear eight beats, then tap each beat as it arrives.
+        </p>
+      </section>
+
       <section class="monitor" aria-labelledby="monitor-title">
         <div class="monitor__readout">
           <p class="eyebrow">Practice monitor</p>
@@ -160,6 +185,10 @@
           <p>
             The timing model is deterministic and testable, but real device timing still depends on
             the browser and audio hardware. Use it as a practice aid, not as a claim of laboratory precision.
+          </p>
+          <p>
+            Continuous transport schedules a small rolling window while this tab is active. Calibration
+            stores only a response offset in local browser storage; no recording or upload is involved.
           </p>
         </div>
       </details>

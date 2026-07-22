@@ -5,7 +5,7 @@
   "description": "A local-first music practice toolkit prototype.",
   "type": "module",
   "scripts": {
-    "check": "node --check app/app.js && node --check app/metronome/timing.js && node --check app/metronome/wav.js && node --check app/sw.js",
+    "check": "node --check app/app.js && node --check app/metronome/calibration.js && node --check app/metronome/timing.js && node --check app/metronome/transport.js && node --check app/metronome/wav.js && node --check app/sw.js",
     "test": "node --test test/*.test.mjs"
   },
   "engines": {

@@ -1,9 +1,11 @@
-const CACHE_NAME = "openpractice-shell-v2";
+const CACHE_NAME = "openpractice-shell-v3";
 const ASSETS = [
   "./",
   "./index.html",
   "./styles.css",
   "./app.js",
+  "./metronome/calibration.js",
+  "./metronome/transport.js",
   "./metronome/timing.js",
   "./metronome/wav.js",
   "./manifest.webmanifest"

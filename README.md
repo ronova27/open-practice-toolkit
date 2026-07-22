@@ -4,7 +4,7 @@ A free, open-source, local-first music practice toolkit for metronome work, nota
 
 ## Status
 
-OpenPractice Toolkit is still in its founding phase, but the repository now includes a first usable browser vertical slice: a dependency-free advanced metronome prototype under [`app/`](app/). It is not a finished product yet; notation, recording feedback, transcription, and video research remain separate workstreams.
+OpenPractice Toolkit is still in its founding phase, but the repository now includes a usable browser vertical slice: a dependency-free advanced metronome under [`app/`](app/) with finite cycles, rolling long-running transport, and browser-local response calibration. It is not a finished product yet; notation, recording feedback, transcription, and video research remain separate workstreams.
 
 ## What This Project Is
 
@@ -20,7 +20,7 @@ Serve the `app/` directory over HTTP so the Web Audio and service-worker boundar
 python3 -m http.server 4173 --directory app
 ```
 
-Then open <http://127.0.0.1:4173/>. The current metronome supports BPM, tap tempo, time signatures, subdivisions, downbeat accents, tempo ramps, a 3:2-style polyrhythm layer, visual pulse feedback, and local WAV click-track export.
+Then open <http://127.0.0.1:4173/>. The current metronome supports BPM, tap tempo, time signatures, subdivisions, downbeat accents, tempo ramps, a 3:2-style polyrhythm layer, visual pulse feedback, rolling transport scheduling, browser-local response calibration, and local WAV click-track export.
 
 The dependency-free verification lane is:
 
