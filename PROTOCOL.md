@@ -1,5 +1,12 @@
 # Protocol
 
+## 2026-07-22 Ronova v0.6.4 beta publication
+
+- Continued the OpenPractice Toolkit into the approved Ronova `v0.6.4` beta release from isolated commit `fa3b392a8334`, preserving the dirty Ronova checkout and unchanged canonical product source snapshots.
+- Refreshed the public devlog in English, German, French, Japanese, and Traditional Chinese for `2026-07-22`; the release keeps Ronova ID as the sole account boundary and keeps the metronome local-first and dependency-free.
+- Passed the guarded Ronova `predeploy` suite, uploaded Pages deployment `124b37d1` to `https://124b37d1.ronova-dev.pages.dev`, and verified HTTP 200 responses for the canonical and five localized project routes plus the five localized devlog routes on `https://ronova.dev`.
+- Materialized new non-rewriting `v0.6.4`, `internal/v0.6.4.1-beta`, and `portfolio/v0.6.4` refs; no second account system, D1/customer mutation, secret, billing, DNS, or public Git history rewrite was introduced.
+
 ## 2026-07-21 Authorized publish attempt
 
 - Committed the reviewed executable slice as `a29eb1a` and pushed `codex/continue-openpractice` to the public OpenPractice repository; the branch now tracks `origin/codex/continue-openpractice`.
